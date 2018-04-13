@@ -1,17 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pelanggan_model extends CI_Model {
+class Produk_model extends CI_Model {
 
-	var $table = 't_pelanggan';
-	var $column = array('kd_pel','nama','no_hp');
+	var $table = 't_produk';
+	var $column = array('kd_produk','nm_prdk','hrg_server','hrg_jual');
 	var $order = array('id' => 'desc');
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->database();
-		$this->search = '';
+		    $this->search = '';
 
 	}
 
@@ -56,7 +56,7 @@ class Pelanggan_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
-	
+
 	public function count_all()
 	{
 		$this->db->from($this->table);
@@ -101,5 +101,5 @@ class Pelanggan_model extends CI_Model {
 		return $results;
 	}
 
-	
+
 }

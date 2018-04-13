@@ -1,45 +1,43 @@
-<?php $this->load->view('backend/template/css')?>
-<?php $this->load->view('backend/template/header')?>
-<?php $this->load->view('backend/template/menu')?>
-<?php $this->load->view('backend/template/js')?>
+    <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
 
-<div class="wrapper">
-  <div class="content-wrapper">
-    <section class="content-header">
-      <h1>
-        Data Pelanggan
-        <small>Contoh Data Tabel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
+    <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+    <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 
-    <section class="content">
-      <div class="box">
-        <div class="box-header">
-          <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Tambah Pelanggan</button>
-        </div>      
-        <div class="box-body table-responsive">
-          
-          <table id="table" class="table table-hover " cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th>Kode Pelanggan</th>
-                <th>Nama Pelanggan</th>
-                <th>No HP</th>
-                <!-- <th style="width:189px;">Action</th> -->
-              </tr>
-            </thead>
-            <tbody>            
-            </tbody>            
-          </table>
 
-        </div>
-      </div>
-    </section>
-  
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/1.3.3/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/0.4.5/sweetalert2.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/sweetalert2/1.3.3/sweetalert2.min.js"></script>
+
+    <div class = "row">
+
+      <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Add New Teacher</button>
+      <br />
+      <br />
+      <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Date of Birth</th>
+            <th style="width:189px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+        
+      </table>
+    </div>
+
+
+  </div>
 
 
   <script type="text/javascript">
@@ -54,7 +52,7 @@
         
         // Load data for the table's content from an Ajax source
         "ajax": {
-          "url": "<?php echo site_url('pelanggan/daftarpelanggan')?>",
+          "url": "<?php echo site_url('person/ajax_list')?>",
           "type": "POST"
         },
 
@@ -67,16 +65,15 @@
         ],
 
       });
-    });    
-
+    });
 
     function add_person()
-        {
-          save_method = 'add';
-          $('#form')[0].reset(); // reset form on modals
-          $('#modal_form').modal('show'); // show bootstrap modal
-          $('.modal-title').text('Tambah Data Pelanggan'); // Set Title to Bootstrap modal title
-        }
+    {
+      save_method = 'add';
+      $('#form')[0].reset(); // reset form on modals
+      $('#modal_form').modal('show'); // show bootstrap modal
+      $('.modal-title').text('Add New Teacher'); // Set Title to Bootstrap modal title
+    }
 
     function edit_person(id)
     {
@@ -114,17 +111,16 @@
       table.ajax.reload(null,false); //reload datatable ajax 
     }
 
-
     function save()
     {
       var url;
       if(save_method == 'add') 
       {
-        url = "<?php echo site_url('pelanggan/ajax_add')?>";
+        url = "<?php echo site_url('person/ajax_add')?>";
       }
       else
       {
-        url = "<?php echo site_url('pelanggan/ajax_update')?>";
+        url = "<?php echo site_url('person/ajax_update')?>";
       }
 
        // ajax adding data to database
@@ -220,45 +216,55 @@
         todayBtn: true,
         todayHighlight: true,  
     });
-  </script>         
-       
-  </div><!-- /.content -->   
-<?php $this->load->view('backend/template/footer')?>
-</div><!-- ./wrapper -->
 
 
-<!-- Bootstrap modal -->
-<div class="modal fade" id="modal_form" role="dialog">
+  </script>
+
+   <!-- Bootstrap modal -->
+  <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h3 class="modal-title">Form Tambah Data Pelanggan</h3>
+          <h3 class="modal-title">Person Form</h3>
         </div>
         <div class="modal-body form">
           <form action="#" id="form" class="form-horizontal">
             <input type="hidden" value="" name="id"/> 
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-3">Kode Pelanggan</label>
+                <label class="control-label col-md-3">First Name</label>
                 <div class="col-md-9">
-                  <input name="kd_pel" placeholder="First Name" class="form-control" type="text">
+                  <input name="firstName" placeholder="First Name" class="form-control" type="text">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-3">Nama Pelanggan</label>
+                <label class="control-label col-md-3">Last Name</label>
                 <div class="col-md-9">
-                  <input name="nama" placeholder="Last Name" class="form-control" type="text">
+                  <input name="lastName" placeholder="Last Name" class="form-control" type="text">
                 </div>
               </div>
-              
               <div class="form-group">
-                <label class="control-label col-md-3">Nomor HP</label>
+                <label class="control-label col-md-3">Gender</label>
                 <div class="col-md-9">
-                  <input name="no_hp" placeholder="Address"class="form-control"></input>
+                  <select name="gender" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
                 </div>
               </div>
-              
+              <div class="form-group">
+                <label class="control-label col-md-3">Address</label>
+                <div class="col-md-9">
+                  <textarea name="address" placeholder="Address"class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Date of Birth</label>
+                <div class="col-md-9">
+                  <input name="dob" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+                </div>
+              </div>
             </div>
           </form>
         </div>
@@ -270,6 +276,7 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
-      
+
+
 </body>
 </html>

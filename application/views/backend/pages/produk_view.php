@@ -1,7 +1,25 @@
+    <!-- <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
+
+    <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+    <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script> -->
+
+
+    
+
+
+
 <?php $this->load->view('backend/template/css')?>
 <?php $this->load->view('backend/template/header')?>
 <?php $this->load->view('backend/template/menu')?>
 <?php $this->load->view('backend/template/js')?>
+<?php $this->load->view('backend/template/sweetalert')?>
+
+
 
 <div class="wrapper">
   <div class="content-wrapper">
@@ -19,27 +37,29 @@
     <section class="content">
       <div class="box">
         <div class="box-header">
-          <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Tambah Pelanggan</button>
-        </div>      
-        <div class="box-body table-responsive">
-          
-          <table id="table" class="table table-hover " cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th>Kode Pelanggan</th>
-                <th>Nama Pelanggan</th>
-                <th>No HP</th>
-                <!-- <th style="width:189px;">Action</th> -->
-              </tr>
-            </thead>
-            <tbody>            
-            </tbody>            
-          </table>
-
+        <button class="btn btn-success" onclick="add_produk()"><i class="glyphicon glyphicon-plus"></i> Tambah Produk</button>
         </div>
-      </div>
+
+        <div class="box-body table-responsive">
+            <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Kode Produk</th>
+                    <th>Nama Produk</th>
+                    <th>Harga Server</th>
+                    <th>Harga Jual</th>
+                    <th style="width:189px;">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>                
+            </table>
+        </div> <!-- table responsiv-->
+            </div>
+        </div>    
     </section>
-  
+
+  </div>
 
 
   <script type="text/javascript">
@@ -54,7 +74,7 @@
         
         // Load data for the table's content from an Ajax source
         "ajax": {
-          "url": "<?php echo site_url('pelanggan/daftarpelanggan')?>",
+          "url": "<?php echo site_url('produk/ajax_list')?>",
           "type": "POST"
         },
 
@@ -67,39 +87,38 @@
         ],
 
       });
-    });    
+    });
 
+    function add_produk()
+    {
+      save_method = 'add';
+      $('#form')[0].reset(); // reset form on modals
+      $('#modal_form').modal('show'); // show bootstrap modal
+      $('.modal-title').text('Tambah Produk'); // Set Title to Bootstrap modal title
+    }
 
-    function add_person()
-        {
-          save_method = 'add';
-          $('#form')[0].reset(); // reset form on modals
-          $('#modal_form').modal('show'); // show bootstrap modal
-          $('.modal-title').text('Tambah Data Pelanggan'); // Set Title to Bootstrap modal title
-        }
-
-    function edit_person(id)
+    function edit_produk(id)
     {
       save_method = 'update';
       $('#form')[0].reset(); // reset form on modals
 
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('person/ajax_edit/')?>/" + id,
+        url : "<?php echo site_url('produk/ajax_edit/')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
         {
          
           $('[name="id"]').val(data.id);
-          $('[name="firstName"]').val(data.firstName);
-          $('[name="lastName"]').val(data.lastName);
-          $('[name="gender"]').val(data.gender);
-          $('[name="address"]').val(data.address);
-          $('[name="dob"]').val(data.dob);
+          $('[name="kd_produk"]').val(data.kd_produk);
+          $('[name="nm_prdk"]').val(data.nm_prdk);
+          $('[name="hrg_server"]').val(data.hrg_server);
+          $('[name="hrg_jual"]').val(data.hrg_jual);
+          
           
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Teacher'); // Set title to Bootstrap modal title
+            $('.modal-title').text('Edit Produk'); // Set title to Bootstrap modal title
             
           },
           error: function (jqXHR, textStatus, errorThrown)
@@ -114,17 +133,16 @@
       table.ajax.reload(null,false); //reload datatable ajax 
     }
 
-
     function save()
     {
       var url;
       if(save_method == 'add') 
       {
-        url = "<?php echo site_url('pelanggan/ajax_add')?>";
+        url = "<?php echo site_url('produk/ajax_add')?>";
       }
       else
       {
-        url = "<?php echo site_url('pelanggan/ajax_update')?>";
+        url = "<?php echo site_url('produk/ajax_update')?>";
       }
 
        // ajax adding data to database
@@ -151,7 +169,7 @@
           });
      }
 
-     function delete_person(id)
+     function delete_produk(id)
      {
 
       swal({
@@ -168,7 +186,7 @@
 
      // ajax delete data to database
      $.ajax({
-      url : "<?php echo site_url('person/ajax_delete')?>/"+id,
+      url : "<?php echo site_url('produk/ajax_delete')?>/"+id,
       type: "POST",
       dataType: "JSON",
       success: function(data)
@@ -194,10 +212,10 @@
       
     }
 
-    function view_person(id)
+    function view_produk(id)
 {
           $.ajax({
-            url : "<?php echo site_url('person/list_by_id')?>/" + id,
+            url : "<?php echo site_url('produk/list_by_id')?>/" + id,
             type: "GET",
             success: function(result)
             {
@@ -211,51 +229,48 @@
       }
 
 
-     //datepicker
-    $('.datepicker').datepicker({
-        autoclose: true,
-        format: "yyyy-mm-dd",
-        todayHighlight: true,
-        orientation: "top auto",
-        todayBtn: true,
-        todayHighlight: true,  
-    });
-  </script>         
-       
-  </div><!-- /.content -->   
+     
+  </script>
+
+
+</div><!-- /.content -->   
 <?php $this->load->view('backend/template/footer')?>
 </div><!-- ./wrapper -->
 
-
-<!-- Bootstrap modal -->
-<div class="modal fade" id="modal_form" role="dialog">
+   <!-- Bootstrap modal -->
+  <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h3 class="modal-title">Form Tambah Data Pelanggan</h3>
+          <h3 class="modal-title">Produk Form</h3>
         </div>
         <div class="modal-body form">
           <form action="#" id="form" class="form-horizontal">
             <input type="hidden" value="" name="id"/> 
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-3">Kode Pelanggan</label>
+                <label class="control-label col-md-3">Kode Produk</label>
                 <div class="col-md-9">
-                  <input name="kd_pel" placeholder="First Name" class="form-control" type="text">
+                  <input name="kd_produk" placeholder="Kode Produk" class="form-control" type="text">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-3">Nama Pelanggan</label>
+                <label class="control-label col-md-3">Nama Produk</label>
                 <div class="col-md-9">
-                  <input name="nama" placeholder="Last Name" class="form-control" type="text">
+                  <input name="nm_prdk" placeholder="Nama Produk" class="form-control" type="text">
                 </div>
               </div>
-              
               <div class="form-group">
-                <label class="control-label col-md-3">Nomor HP</label>
+                <label class="control-label col-md-3">Harga Server</label>
                 <div class="col-md-9">
-                  <input name="no_hp" placeholder="Address"class="form-control"></input>
+                  <input name="hrg_server" placeholder="Harga Server" class="form-control">  </input>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3">Harga Jual</label>
+                <div class="col-md-9">
+                  <input name="hrg_jual" placeholder="hrg_jual"class="form-control"></input>
                 </div>
               </div>
               
@@ -270,6 +285,7 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
-      
+
+
 </body>
 </html>

@@ -53,7 +53,19 @@ class Pelanggan extends CI_Controller {
 		echo json_encode($output);
 	}
 
-        
+	public function ajax_add()
+	{
+		$data = array(
+				'kd_pel' => $this->input->post('kd_pel'),
+				'nama' => $this->input->post('nama'),
+				'no_hp' => $this->input->post('no_hp'),
+				
+			);
+		$insert = $this->person->save($data);
+		echo json_encode(array("status" => TRUE));
+	}
+
+	
         
 
 
