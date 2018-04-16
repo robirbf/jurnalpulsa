@@ -8,60 +8,65 @@
     <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
     <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script> -->
 
-
-    
-
-
-
 <?php $this->load->view('backend/template/css')?>
 <?php $this->load->view('backend/template/header')?>
 <?php $this->load->view('backend/template/menu')?>
 <?php $this->load->view('backend/template/js')?>
 <?php $this->load->view('backend/template/sweetalert')?>
 
-
-
 <div class="wrapper">
-  <div class="content-wrapper">
-    <section class="content-header">
-      <h1>
-        Data Pelanggan
-        <small>Contoh Data Tabel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
+  <div class="content-wrapper"> 
+        <section class="content-header">
+        <h1>
+          Data Pelanggan
+          <small>Contoh Data Tabel</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">Dashboard</li>
+        </ol>
+        </section>
 
-    <section class="content">
-      <div class="box">
-        <div class="box-header">
-        <button class="btn btn-success" onclick="add_produk()"><i class="glyphicon glyphicon-plus"></i> Tambah Produk</button>
-        </div>
+        <section class="content  ">  
+          <div class="row">
+            <div class="col-md-7">           
+              <div class="box">
+                <div class="box-header">
+                <button class="btn btn-success" onclick="add_produk()"><i class="glyphicon glyphicon-plus"></i> Tambah Produk</button>
+                </div>                
+                <div class="box-body table-responsive ">
+                    <table id="table" class="table table-striped table-bordered " cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Kode Produk</th>
+                            <th>Nama Produk</th>
+                            <th>Harga Server</th>
+                            <th>Harga Jual</th>
+                            <th style="width:100px;">Action</th>
+                            <!-- <th style="width:50px;">Action</th> -->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>                
+                    </table>
+                </div> <!-- table responsiv-->
+              </div> <!-- box-->   
+            </div> <!-- col-md-8-->         
+            <div class="col-md-5">
+              <div class="box ">
+                    <div class="box-header">
+                        <h3 class="box-title">Monthly Recap Report</h3>        
+                        <div class="col-md-8">col-sm-8</div>
+                        <div class="col-md-4">col-sm-4</div>        
+                    </div>
+              </div>
+            </div> <!-- col-md-4-->
+          </div> <!-- row-->
 
-        <div class="box-body table-responsive">
-            <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                <tr>
-                    <th>Kode Produk</th>
-                    <th>Nama Produk</th>
-                    <th>Harga Server</th>
-                    <th>Harga Jual</th>
-                    <th style="width:189px;">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>                
-            </table>
-        </div> <!-- table responsiv-->
-            </div>
-        </div>    
-    </section>
+        </section>
 
-  </div>
-
-
+          
+  
   <script type="text/javascript">
 
     var save_method; //for save method string
@@ -226,15 +231,13 @@
 
             }
         });
-      }
-
-
-     
+      }     
   </script>
 
 
 </div><!-- /.content -->   
 <?php $this->load->view('backend/template/footer')?>
+
 </div><!-- ./wrapper -->
 
    <!-- Bootstrap modal -->
@@ -270,7 +273,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3">Harga Jual</label>
                 <div class="col-md-9">
-                  <input name="hrg_jual" placeholder="hrg_jual"class="form-control"></input>
+                  <input name="hrg_jual" placeholder="Harga Jual"class="form-control"></input>
                 </div>
               </div>
               

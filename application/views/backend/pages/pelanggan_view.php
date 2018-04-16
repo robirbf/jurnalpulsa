@@ -16,7 +16,7 @@
       </ol>
     </section>
 
-    <section class="content">
+    <section class="content col-md-6">
       <div class="box">
         <div class="box-header">
           <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Tambah Pelanggan</button>
@@ -242,20 +242,20 @@
               <div class="form-group">
                 <label class="control-label col-md-3">Kode Pelanggan</label>
                 <div class="col-md-9">
-                  <input name="kd_pel" placeholder="First Name" class="form-control" type="text">
+                  <input name="kd_pel" placeholder="Kode Pelanggan" class="form-control" type="text">
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-3">Nama Pelanggan</label>
                 <div class="col-md-9">
-                  <input name="nama" placeholder="Last Name" class="form-control" type="text">
+                  <input name="nama" placeholder="Nama Pelanggan" class="form-control" type="text">
                 </div>
               </div>
               
               <div class="form-group">
                 <label class="control-label col-md-3">Nomor HP</label>
                 <div class="col-md-9">
-                  <input name="no_hp" placeholder="Address"class="form-control"></input>
+                  <input name="no_hp" placeholder="Nomor HP Pelanggan"class="form-control"></input>
                 </div>
               </div>
               

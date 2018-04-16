@@ -59,11 +59,12 @@
           <ul class="treeview-menu">
             <li><a href="<?=base_url('pelanggan/load_pelanggan')?>"><i class="fa fa-circle-o"></i> Data Pelanggan</a></li>
             <li><a href="<?=base_url('transaksi/load_transaksi')?>"><i class="fa fa-circle-o"></i> Daftar Transaksi</a></li>
-            <li><a href="<?=base_url('produk/load_produk')?>"><i class="fa fa-circle-o"></i> Daftar Produk</a></li>
-            
+            <li><a href="<?=base_url('produk/load_produk')?>"><i class="fa fa-circle-o"></i> Daftar Produk</a></li>            
             <li><a href="<?=base_url('pulsaku')?>"><i class="fa fa-circle-o"></i> Contoh Dhasboard PulsaQu</a></li>
           </ul>
-        </li>      
+        </li>   
+
+        <li>   
       </ul>
     </section>
     <!-- /.sidebar -->

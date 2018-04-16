@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pelanggan_model extends CI_Model {
 
 	var $table = 't_pelanggan';
+	
 	var $column = array('kd_pel','nama','no_hp');
 	var $order = array('id' => 'desc');
 
